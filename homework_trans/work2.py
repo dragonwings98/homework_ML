@@ -19,21 +19,21 @@ def analyze_vrp_results(problem_instances):
     
     plt.figure(figsize=(8, 6))
     sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f")
-    plt.title("相关性热力图")
+    plt.title("Correlation heat map")
     plt.show()
 
     plt.figure(figsize=(8, 6))
     sns.scatterplot(data=df, x="Num Nodes", y="Solve Time", hue="Problem Type", style="Problem Type")
-    plt.xlabel("问题规模（节点数）")
-    plt.ylabel("计算时间 (s)")
-    plt.title("问题维度 vs 计算时间")
+    plt.xlabel("Problem size (number of nodes)")
+    plt.ylabel("calculation time (s)")
+    plt.title("Problem dimension vs computation time")
     plt.show()
 
     plt.figure(figsize=(8, 6))
     sns.boxplot(data=df, x="Problem Type", y="Solve Time")
-    plt.xlabel("问题类型")
-    plt.ylabel("计算时间 (s)")
-    plt.title("不同问题类型的计算时间分布")
+    plt.xlabel("Problem type")
+    plt.ylabel("Calculation time (s)")
+    plt.title("Calculation time distributions for different problem types")
     plt.show()
 
     return df
