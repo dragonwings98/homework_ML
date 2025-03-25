@@ -32,7 +32,18 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format='midpoint'):
     # Union area
     union = box1_area + box2_area - intersection
 
-    return intersection / union
+    
+    epsilon = 1e-6  
+    if (union <= epsilon).any():
+        iou = torch.where(
+            (box1_area == 0) & (box2_area == 0),
+            torch.tensor(1.0, device=boxes_preds.device),
+            torch.tensor(0.0, device=boxes_preds.device)
+        )
+        return iou
+    else:
+        return intersection / union
+
 
 
 
